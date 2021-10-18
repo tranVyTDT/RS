@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "b5832c0d-39e2-48e9-976d-7c0758a87bb4",
+		"name": "Can Tho University",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"vantien\",\n    \"profile_name\": \"vantien profile name\",\n    \"sex\": \"Nam\",\n    \"birthday\": \"2000-10-27\",\n    \"address\": \"BRVT\",\n    \"phone\": \"0393258535\",\n    \"email\": \"b@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/signup/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"signup",
+								""
+							]
+						},
+						"description": "- Signup for normal user without bearer authentication ( shoud miss role field in body )\n- Signup for role user, such as: staff and director, must request with bearer authentication. Owner token auth must be as director or superuser ( root admin )"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MywidHlwZSI6ImFjY2Vzc190b2tlbiIsInVzZXJuYW1lIjoiIiwiZW1haWwiOiJiQGdtYWlsLmNvbSIsImV4cCI6MTYzNDM3NjA3N30.hXH8xi4irm2B59i0j2rPh-JD9MKoMbjdCGWw-SVxP7I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_id",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "abc",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "abc",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "upload",
+									"type": "file",
+									"src": "/home/tien/Desktop/c/backend/social_auth/facebook.py"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/posts/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts",
+								""
+							]
+						},
+						"description": "aa"
+					},
+					"response": []
+				},
+				{
+					"name": "List post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null,
+						"description": "- Truyền vào query params nếu có, ?name_id=abc . Để tiến hành search"
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "List post recieve (Tạm thời không xài)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "List post agree(Tạm thời không xài)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"bbb\",\n    \"content\": \"afc\",\n    \"category\": \"ddd\",\n    \"approve\": \"yes\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/posts/123422/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"posts",
+								"123422",
+								""
+							]
+						},
+						"description": "Chia ra thành 2 cái, 1 là update field trong model và update châp nhận bài post hay không ( yêu cầu quyền )\n- update field, thì cần đăng nhập và chủ cái bài post đó\n- update chấp nhân cần role staff hoặc role director hoặc tài khoản superuser"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

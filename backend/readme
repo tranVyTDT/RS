@@ -1,0 +1,4 @@
+- Đầu tiên chạy server
+- Bật postman lên import 2 file là file colection và file env. Trong file env config lại cái token
+- vào folder create_data, chạy file main.py
+- Vào django admin kiểm tra ở post xem dữ liệu đã vào chưa
